@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link href="images/apple-touch-startup-image-320x460.png" media="(device-width: 320px)"
+        rel="apple-touch-startup-image">
+    <link href="images/apple-touch-startup-image-640x920.png"
+        media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <title>暗网科技7</title>
+    <link rel="stylesheet" href="css/framework7.css">
+    <link rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
+    <link type="text/css" rel="stylesheet" href="css/animations.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet">
+</head>
+
+<body id="mobile_wrap">
+
+
+
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+
+    <div class="panel-overlay"></div>
+
+    <div class="panel panel-left panel-reveal">
+        <div class="view view-subnav">
+            <div class="pages">
+                <div data-page="panel-leftmenu" class="page pagepanel">
+                    <div class="page-content">
+                        <nav class="main_nav_icons_inline_2">
+                            <ul>
+                                <li><a href="./" class="close-panel" data-view=".view-main"><img
+                                            src="images/icons/white/home.png" alt="" title="" /><span>首页</span></a></li>
+                                <li><a href="borrow_book.html" class="close-panel" data-view=".view-main"><img
+                                            src="images/icons/white/扫一扫.png" alt="" title="" /><span>扫一扫借书</span></a>
+                                </li>
+                                <li><a href="books_list.html" class="close-panel" data-view=".view-main"><img
+                                            src="images/icons/white/list.png" alt="" title="" /><span>图书馆藏书</span></a>
+                                </li>
+
+                                <li><a href="books_donation.html" class="close-panel" data-view=".view-main"><img
+                                            src="images/icons/white/书.png" alt="" title="" /><span>我要捐书</span></a></li>
+                                <li><a href="return-book.html" class="close-panel" data-view=".view-main"><img
+                                            src="images/icons/white/相机（1）.png" alt="" title="" /><span>拍照还书</span></a>
+                                </li>
+                                <!--			<li><a href="#" data-popup=".popup-loading" class="open-popup close-panel"><img src="images/icons/white/置换.png" alt="" title="" /><span>图书置换</span></a></li>-->
+
+                                <!--<li><a href="#" data-popup=".popup-login" class="open-popup close-panel"><img src="images/icons/white/我的.png" alt="" title="" /><span>待定</span></a></li>-->
+                                <!--<li><a href="#" data-popup=".popup-login" class="open-popup close-panel"><img src="images/icons/white/我的.png" alt="" title="" /><span>待定</span></a></li>-->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-right panel-reveal">
+        <div class="user_login_info">
+            <div v-if="g_data.isLogin">
+                <div class="user_thumb" v-if="!more_functions"> 
+                    <!-- <iframe src="./earth"></iframe> -->
+                    <img src="./images/earth.gif"></img>
+                    <div class="user_details">
+                        <p><span>卡密：${g_data.user_info.secret}</span>剩余使用次数：${g_data.user_info.times}次<br></p> 
+                    </div>
+                    <!--<div class="user_avatar"><img src="images/avatar.jpg" alt="" title="" /></div>-->
+                </div>
+                <nav class="user-nav">
+                    <ul> 
+                            <div v-if="!more_functions">
+                                <li> <a href="#" data-popup=".popup-result" class="open-popup close-panel"><img
+                                            src="images/icons/white/mybook.png" alt="" title="" /><span>手机定位</span></a></li> 
+                                <li> <a href="#" data-popup=".popup-location" class="close-panel"><img
+                                            src="images/icons/white/mybook.png" alt="" title="" /><span>QQ定位</span></a></li> 
+                                <li> <a href="#" data-popup=".popup-result" class="close-panel"><img
+                                            src="images/icons/white/mybook.png" alt="" title="" /><span>微信定位</span></a></li> 
+                                <li v-on:click="more_functions=1"> <a href="#" class=""><img src="images/icons/white/love.png" alt=""
+                                    title="" /><span>更多功能</span></a></li> 
+                                            
+                                <li v-on:click="logout"> <a href="#" class=""><img src="images/icons/white/love.png" alt=""
+                                    title="" /><span>登出</span></a></li> 
+                            </div>
+                            <div v-if="more_functions">
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>微信聊天记录</span></a></li> 
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>QQ聊天记录</span></a></li> 
+                                    <li> <a href="#" data-popup=".popup-result" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>网页浏览记录</span></a></li>  
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>手机相册</span></a></li>  
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>通话记录</span></a></li> 
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>短信记录</span></a></li> 
+                                    <li> <a href="#" data-popup=".popup-result" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>手机联系人</span></a></li>  
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>手机视频</span></a></li>  
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>通话录音</span></a></li> 
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>身份信息</span></a></li> 
+                                    <li> <a href="#" data-popup=".popup-result" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>开房记录</span></a></li>  
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>出行记录</span></a></li>  
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>资产查询</span></a></li> 
+                                    <li> <a href="#" data-popup="" class=""><img
+                                                src="images/icons/white/mybook.png" alt="" title="" /><span>快递外卖收货地址</span></a></li>  
+                                <li v-on:click="more_functions=0"> <a href="#" class=""><img src="images/icons/white/love.png" alt=""
+                                    title="" /><span>返回</span></a></li> 
+                            </div>
+                    </ul>
+                </nav>
+            </div>
+            <div v-else>
+                <div class="user_thumb">
+                    <img src="images/我的背景.jpg" alt="" title="" />
+                    <div class="user_details">
+                        <p><span>用户未登陆</span></p>
+                    </div>
+                    <!--<div class="user_avatar"><img src="images/avatar.jpg" alt="" title="" /></div>-->
+                </div>
+                <nav class="user-nav">
+                    <ul>
+                        <li> <a data-popup=".popup-login" class="open-popup close-panel" href="#"><img
+                                    src="images/icons/white/love.png" alt="" title="" /><span>登陆</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+                <div class="pages">
+                        <div data-page="index" class="page homepage">
+                            <div class="navbarpages">
+                                <div class="navbar_left">
+                                    <div class="logo_text"><a href="index.html">黑科技7定位系统</a></div>
+                                </div> 
+                                <div class="navbar_right">
+                                    <a href="#" data-panel="right" class="open-panel"><img src="images/icons/white/user.png" alt="" title=""></a>
+                                </div>
+                            </div>
+                            <!-- Slider -->
+                            <div class="swiper-container slidertoolbar swiper-init swiper-container-horizontal" data-effect="slide" data-parallax="true" data-pagination=".swiper-pagination" data-next-button=".swiper-button-next" data-prev-button=".swiper-button-prev">
+                                <div class="swiper-wrapper">
+        
+                                    <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;images/earth.gif&quot;); width: 505px;">
+                                        <div class="slider_trans">
+                                            <div class="slider-caption">
+                                                <span class="subtitle" data-swiper-parallax="-60%" style="transform: translate3d(0%, 0px, 0px);">日均在线人数1600人次</span>
+                                                <h2 data-swiper-parallax="-100%" style="transform: translate3d(0%, 0px, 0px);">欢迎来到黑科技7定位系统</h2>
+        
+                                                <p data-swiper-parallax="-30%" style="transform: translate3d(0%, 0px, 0px);">
+                                                        黑科技7定位系统是一款在线卫星移动跟踪和手机号码定位系统。<br>只需要对方手机号码就能帮助您找到丢失的移动设备,失联朋友或家庭成员的手机户外安全与使用行为的手机监控软件系统。<br>官方！QQXXXXX、
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide swiper-slide-next" style="background-image: url(&quot;images/index02.jpg&quot;); width: 505px;">
+                                        <div class="slider_trans">
+                                            <div class="slider-caption">
+                                                <span class="subtitle" data-swiper-parallax="-60%" style="transform: translate3d(60%, 0px, 0px);">日均在线人数1600人次</span>
+                                                <h2 data-swiper-parallax="-100%" style="transform: translate3d(100%, 0px, 0px);">欢迎来到黑科技7定位系统</h2>
+                                                <p data-swiper-parallax="-30%" style="transform: translate3d(30%, 0px, 0px);">
+                                                        本系统可实施对任何手机号码的定位和手机号码位置追踪，支持手机号码外微信QQ号码多种账号形式获取手机相册，通话记录、手机联系人、短信、微信聊天记录、QQ聊天信息查询、Facebook等。<br>官方！QQXXXXX、
+                                                </p>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide" style="background-image: url(&quot;images/index03.jpg&quot;); width: 505px;">
+                                        <div class="slider_trans">
+                                            <div class="slider-caption">
+                                                <span class="subtitle" data-swiper-parallax="-60%" style="transform: translate3d(60%, 0px, 0px);">日均在线人数1600人次</span>
+                                                <h2 data-swiper-parallax="-100%" style="transform: translate3d(100%, 0px, 0px);">欢迎来到黑科技7定位系统</h2>
+        
+                                                <p data-swiper-parallax="-30%" style="transform: translate3d(30%, 0px, 0px);">付费用户点击用户图标可开启多种黑科技软件黑科技7深度大数据采集平台支持多种入侵远控编译服务.<br>官方！QQXXXXX、</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
+                                <div class="swiper-button-prev swiper-button-disabled"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+        
+                            <div class="swiper-container-toolbar swiper-toolbar swiper-init swiper-container-horizontal" data-effect="slide" data-slides-per-view="1" data-slides-per-group="1" data-space-between="0" data-pagination=".swiper-pagination-toolbar">
+                                <div class="swiper-pagination-toolbar"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span></div>
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide toolbar-icon swiper-slide-active" style="width: 495px;">
+                                        <a href="#" data-view=".view-main" onclick='location.reload()'><img src="images/icons/green/扫一扫.png" alt="" title=""><span>首页</span></a> 
+                                        <a href="#" data-view=".view-main" onclick="alert('正在开发')"><img src="images/icons/green/list.png" alt="" title=""><span>产品介绍</span></a> 
+                                        <a href="#" data-view=".view-main" onclick="alert('正在开发')"><img src="images/icons/green/书.png" alt="" title=""><span>联系我们</span></a>
+                                        <a href="#" data-popup="" class="lose-panel" onclick="alert('正在开发')"><img src="images/icons/green/相机.png" alt="" title=""><span>代理加盟</span></a> 
+                                        <a href="#" data-popup=".popup-loading" class="open-popup close-panel" onclick="alert('正在开发')"><img src="images/icons/green/讨论.png" alt="" title=""><span>广告合作</span></a> 
+                                        
+                                        <a v-if="g_data.isLogin" href="#" data-panel="right" class="open-panel"><img
+                                            src="images/icons/green/lock.png" alt=""
+                                            title="" /><span>我的</span></a>
+                                        <a v-if="!g_data.isLogin" href="#" data-popup=".popup-login"
+                                        class="open-popup close-panel"><img src="images/icons/green/lock.png" alt=""
+                                            title="" /><span>请先登录</span></a>
+                                </div>
+                            </div>
+        
+        
+                        </div>
+                    </div>
+        </div>
+
+
+
+    </div>
+    </div>
+
+
+    <!-- Login Popup -->
+    <div class="popup popup-login">
+        <div class="content-block">
+            <h4>卡密登录</h4>
+            <div class="loginform">
+                <form id="LoginForm" method="post">
+                    <input type="text" name="secret" value="" class="form_input required" placeholder="输入卡密" />
+                    <!--<div class="forgot_pass"><a href="#" data-popup=".popup-forgot" class="open-popup">Forgot Password?</a></div>-->
+                    <input type="submit" name="submit" class="form_submit" id="submit" value="登录" />
+                    <article>
+                        <section class="description">
+                            <p>登陆</p>
+                        </section>
+                    </article>
+                </form> 
+
+            </div> 
+            <div class="close_popup_button">
+                    <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title=""></a>
+                </div>
+        </div>
+    </div> 
+
+    
+
+
+    <!-- 提交手机-->
+    <div class="popup popup-result ">
+            <div id="pages_maincontent">
+              <div id="popup-result-id">
+                    <h2 class="page_title">手机定位</h2>
+                    
+                  <div class="page_single layout_fullwidth_padding">  
+                    <p v-if="g_data.phone_list.length==0">你没有提交过手机号</p>
+                  <ul class="features_list_detailed">
+                        <li v-for="item in g_data.phone_list">
+                            <div class="feat_small_icon"><img src="images/icons/black/electronics.png" alt="" title=""></div>
+                            <div class="feat_small_details">
+                            <h4><a href="#">手机号码:${item.phone}</a></h4>
+                            <p>提交时间：${item.time}</p>
+                            <p v-if="item.result!=''" style="color:red">定位成功：${item.result}</p>
+                            <p v-if="item.result==''">系统正在处理中...</p>
+                            </div>
+                        </li>    
+                        
+                        
+                    </ul>
+                     </div>
+                    
+                
+      <h2 class="page_title">输入要定位的手机号码</h2>
+	  
+      <div class="page_single layout_fullwidth_padding">	  
+ 
+             <h2 id="Note"></h2>
+             <div class="contactform">
+             <form class="" id="ContactForm" method="post" action="" novalidate="novalidate"> 
+             <input type="text" name="ContactName" id="phone_submit" value="" class="form_input required"> 
+             <input v-on:click="submit_phone" type="submit" name="submit" class="form_submit"  value="提交">
+             <input class="" type="hidden" name="to" value="youremail@yourwebsite.com">
+             <input class="" type="hidden" name="subject" value="Contacf form message">
+             <label id="loader" style="display:none;"><img src="images/loader.gif" alt="Loading..." id="LoadingGraphic"></label>
+             </form>
+             </div>
+ 
+       
+       <div class="clear"></div>
+       </div>
+    </div>
+                </div><div class="close_popup_button">
+                        <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title=""></a>
+                    </div>
+    </div>
+    <!-- 正在处理提示窗 -->
+    <div class="popup popup-pending" style="text-align:center;background-color: rgba(0,0,0,0.5);">
+        <div class="content-block" style="padding:40% 5%"> 
+            <label><img src="images/loader01.gif" alt="Loading..." /></label>
+            <h4 style="color:white;margin:0 auto;" class="pendding-text">正在处理...</h4>
+        </div>
+    </div>
+
+    <!-- 出错提示窗 -->
+    <div class="popup popup-error close-popup"  style="text-align:center;background-color: rgba(0,0,0,0.5);">
+            <div class="content-block" style="padding:30% 5%"> 
+                <label><img src="images/error.png" style="width:20%;height:20%" alt="Loading..." /></label>
+                <b><h2 style="color:red;margin:0 auto;font-weight: 900" class="error-text"></h2> </b>
+                <div class="close_popup_button">
+                    <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
+                </div>
+            </div>
+    </div>
+
+    <!-- 显示图片 -->
+    <div class="popup popup-image close-popup" style="background-color: rgba(0,0,0,0.1);">
+        <div class="content-block" style=""> 
+            <label><img src="" alt="Loading..." ></label> 
+    </div>
+ 
+
+
+    <script src="js/vue.min.js"></script> 
+    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <script type="text/javascript" src="js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="js/email.js"></script>
+    <script type="text/javascript" src="js/audio.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="js/quagga.min.js" type="text/javascript"></script>
+    <script src="js/utils.js" type="text/javascript"></script>
+    <script src="js/qrscan.js" type="text/javascript"></script>
+
+</body>
+
+</html>
