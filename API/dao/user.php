@@ -55,5 +55,9 @@ Class User extends Base{
         $rst = $this->createSQLAndRun("update orders set result='%s' where id='%s'",$result,$order_id);  
         return $this->lastAffectedRows()>0;
     }
+    public function updateIP($secret,$ip){
+        $rst = $this->createSQLAndRun("update user set ip='%s' where secret='%s'",$ip,$secret); 
+        return $rst;
+    }
 }; 
 ?>

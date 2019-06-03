@@ -10,8 +10,9 @@ function main(){
         $secret=\UserSess\getKey("secret");
         $data = $u->getUserInfo($secret);
         Utils::exit(0,$data);
-    }else
+    }else{
         Utils::exit(-1,"未登录");
+    }
 }
 /********* ***************/
 main();

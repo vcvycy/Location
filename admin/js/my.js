@@ -147,7 +147,10 @@ pages_init ={
             data: {
                 times : 3,
                 new_secret:"",
-                user_list : []
+                user_list : [],
+                user_config:{
+                    "联系方式":""
+                }
             },
             methods: { 
                 setReviewStatus:(id,status)=>{  
@@ -179,7 +182,18 @@ pages_init ={
                         }else
                         alert(obj.data);
                     })
-                } 
+                },
+                update_user_config:()=>{ 
+                    str= JSON.stringify(user_list_vue.user_config);
+                    url=`${getRootURL()}/API/admin/updateUserConfig.php?user_config=${str}`;
+                    $.get(url,function(data){
+                        obj=JSON.parse(data);
+                        if (obj.error_code==0){  
+                            alert("修改成功");
+                        }else
+                        alert(obj.data);
+                    })
+                }
             }   
           });
         url=`${getRootURL()}/API/admin/getUserList.php`;
@@ -187,6 +201,15 @@ pages_init ={
             obj= JSON.parse(data);
             if (obj.error_code==0){  
                 user_list_vue.user_list=obj.data;
+            }
+        });
+        //user config
+        
+        url=`${getRootURL()}/API/user_config.php`;
+        $.get(url,function(data){
+            obj= JSON.parse(data);
+            if (obj.error_code==0){  
+                user_list_vue.user_config=obj.data;
             }
         });
     },

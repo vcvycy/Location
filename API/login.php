@@ -10,6 +10,7 @@ function main(){
         $b=new User();
         if ($b->secretExistInDB($secret)){
             \UserSess\login($secret);  
+            $b->updateIP($secret,$_SERVER['REMOTE_ADDR']." 时间：".date('Y-m-d H:i:s') );
             return Utils::exit(0,"登陆成功");
         }
           else

@@ -2,7 +2,10 @@
 var myData={
 	isLogin:false,
 	user_info: null,          //登陆信息
-	phone_list:[]
+	phone_list:[],
+	config:{
+		"联系方式":""
+	}
 } 
 var myApp = new Framework7({
     animateNavBackIcon: true,
@@ -50,6 +53,7 @@ var image_window={
 
 /* 判断是否登陆，如果登陆，载入登陆信息、存取书信息 */
 function index_init(){ 
+
 	home_vue = new Vue({
 		el:'.user_login_info',
 		delimiters: ['${', '}'],
@@ -75,6 +79,11 @@ function index_init(){
 		delimiters: ['${', '}'],
 		data:{
 			g_data :myData
+		},
+		methods:{
+			contact_admin :function(){
+				alert(`请联系管理员！${myData.config["联系方式"]}`);
+			}
 		}
 	});  
 	
@@ -112,7 +121,8 @@ function index_init(){
 		success: function (data) { 
 			console.log(data);
 			if(data.error_code==0){  
-				home_vue.g_data.user_info = data.data;
+				home_vue.g_data.user_info = data.data; 
+				home_vue.g_data.config = data.data.config;
 				home_vue.g_data.isLogin = true; 
 				myApp.openModal(".popup-result");
 				$(".popup-result").show();
@@ -134,6 +144,11 @@ function index_init(){
 			}else {   
 			}
 		}
+	});
+	$.get("./API/user_config.php",function(data){
+		obj= JSON.parse(data);
+		myData.config=obj.data;
+		$(".contact-admin").html(myData.config["联系方式"]);
 	});
 }
 // Export selectors engine

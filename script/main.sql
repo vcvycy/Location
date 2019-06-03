@@ -7,6 +7,7 @@ create table user(
     id  int auto_increment not null primary key, 
     time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     secret  varchar(64) ,
+    ip   VARCHAR(64),
     times  int 
 );  
 create table orders(

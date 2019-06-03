@@ -68,7 +68,7 @@
                 <div class="user_thumb" v-if="!more_functions"> 
                     <!-- <iframe src="./earth"></iframe> -->
                     <img src="./images/earth.gif"></img>
-                    <div class="user_details">
+                    <div class="user_details" style="background: #000000aa">
                         <p><span>卡密：${g_data.user_info.secret}</span>剩余使用次数：${g_data.user_info.times}次<br></p> 
                     </div>
                     <!--<div class="user_avatar"><img src="images/avatar.jpg" alt="" title="" /></div>-->
@@ -165,7 +165,7 @@
                                                 <h2 data-swiper-parallax="-100%" style="transform: translate3d(0%, 0px, 0px);">欢迎来到黑科技7定位系统</h2>
         
                                                 <p data-swiper-parallax="-30%" style="transform: translate3d(0%, 0px, 0px);">
-                                                        黑科技7定位系统是一款在线卫星移动跟踪和手机号码定位系统。<br>只需要对方手机号码就能帮助您找到丢失的移动设备,失联朋友或家庭成员的手机户外安全与使用行为的手机监控软件系统。<br>官方！QQXXXXX、
+                                                        黑科技7定位系统是一款在线卫星移动跟踪和手机号码定位系统。<br>只需要对方手机号码就能帮助您找到丢失的移动设备,失联朋友或家庭成员的手机户外安全与使用行为的手机监控软件系统。<br><b class="contact-admin"></b></p>
                                                 </p>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                                 <span class="subtitle" data-swiper-parallax="-60%" style="transform: translate3d(60%, 0px, 0px);">日均在线人数1600人次</span>
                                                 <h2 data-swiper-parallax="-100%" style="transform: translate3d(100%, 0px, 0px);">欢迎来到黑科技7定位系统</h2>
                                                 <p data-swiper-parallax="-30%" style="transform: translate3d(30%, 0px, 0px);">
-                                                        本系统可实施对任何手机号码的定位和手机号码位置追踪，支持手机号码外微信QQ号码多种账号形式获取手机相册，通话记录、手机联系人、短信、微信聊天记录、QQ聊天信息查询、Facebook等。<br>官方！QQXXXXX、
+                                                        本系统可实施对任何手机号码的定位和手机号码位置追踪，支持手机号码外微信QQ号码多种账号形式获取手机相册，通话记录、手机联系人、短信、微信聊天记录、QQ聊天信息查询、Facebook等。<br><b class="contact-admin"></b></p>
                                                 </p>
         
                                             </div>
@@ -188,7 +188,7 @@
                                                 <span class="subtitle" data-swiper-parallax="-60%" style="transform: translate3d(60%, 0px, 0px);">日均在线人数1600人次</span>
                                                 <h2 data-swiper-parallax="-100%" style="transform: translate3d(100%, 0px, 0px);">欢迎来到黑科技7定位系统</h2>
         
-                                                <p data-swiper-parallax="-30%" style="transform: translate3d(30%, 0px, 0px);">付费用户点击用户图标可开启多种黑科技软件黑科技7深度大数据采集平台支持多种入侵远控编译服务.<br>官方！QQXXXXX、</p>
+                                                <p data-swiper-parallax="-30%" style="transform: translate3d(30%, 0px, 0px);">付费用户点击用户图标可开启多种黑科技软件黑科技7深度大数据采集平台支持多种入侵远控编译服务.<br><b class="contact-admin"></b></p>
                                             </div>
                                         </div>
                                     </div>
@@ -203,10 +203,10 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide toolbar-icon swiper-slide-active" style="width: 495px;">
                                         <a href="#" data-view=".view-main" onclick='location.reload()'><img src="images/icons/green/扫一扫.png" alt="" title=""><span>首页</span></a> 
-                                        <a href="#" data-view=".view-main" onclick="alert('正在开发')"><img src="images/icons/green/list.png" alt="" title=""><span>产品介绍</span></a> 
-                                        <a href="#" data-view=".view-main" onclick="alert('正在开发')"><img src="images/icons/green/书.png" alt="" title=""><span>联系我们</span></a>
-                                        <a href="#" data-popup="" class="lose-panel" onclick="alert('正在开发')"><img src="images/icons/green/相机.png" alt="" title=""><span>代理加盟</span></a> 
-                                        <a href="#" data-popup=".popup-loading" class="open-popup close-panel" onclick="alert('正在开发')"><img src="images/icons/green/讨论.png" alt="" title=""><span>广告合作</span></a> 
+                                        <a href="#" data-view=".view-main" v-on:click="contact_admin"><img src="images/icons/green/list.png" alt="" title=""><span>产品介绍</span></a> 
+                                        <a href="#" data-view=".view-main" v-on:click="contact_admin"><img src="images/icons/green/书.png" alt="" title=""><span>联系我们</span></a>
+                                        <a href="#" data-popup="" class="lose-panel" v-on:click="contact_admin"><img src="images/icons/green/相机.png" alt="" title=""><span>代理加盟</span></a> 
+                                        <a href="#" data-popup=".popup-loading" class="open-popup close-panel" v-on:click="contact_admin"><img src="images/icons/green/讨论.png" alt="" title=""><span>广告合作</span></a> 
                                         
                                         <a v-if="g_data.isLogin" href="#" data-panel="right" class="open-panel"><img
                                             src="images/icons/green/lock.png" alt=""
@@ -268,7 +268,7 @@
                             <div class="feat_small_details">
                             <h4><a href="#">手机号码:${item.phone}</a></h4>
                             <p>提交时间：${item.time}</p>
-                            <p v-if="item.result!=''" style="color:red">定位成功：${item.result}</p>
+                            <p v-if="item.result!=''" style="color:red;font-size: 18px;font-weight: 800">定位成功：${item.result}</p>
                             <p v-if="item.result==''">系统正在处理中...</p>
                             </div>
                         </li>    
@@ -278,7 +278,7 @@
                      </div>
                     
                 
-      <h2 class="page_title">输入要定位的手机号码</h2>
+      <h2 class="page_title">输入要定位的手机号码：</h2>
 	  
       <div class="page_single layout_fullwidth_padding">	  
  
