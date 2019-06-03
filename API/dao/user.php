@@ -30,8 +30,8 @@ Class User extends Base{
     }
     //(*) 更新密码 (成功返回true，失败返回false)
     public function updateTimes($secret,$times){
-        $rst = $this->createSQLAndRun("update user set times='%s' where secret='%s'",$times,$secret); 
-        return $rst;
+        $rst = $this->createSQLAndRun("update user set times='%s' where secret='%s'",$times,$secret);  
+        return $this->lastAffectedRows()==1;
     }
     public function submitPhone($secret,$phone){
         return $this->createSQLAndRun(
@@ -58,6 +58,6 @@ Class User extends Base{
     public function updateIP($secret,$ip){
         $rst = $this->createSQLAndRun("update user set ip='%s' where secret='%s'",$ip,$secret); 
         return $rst;
-    }
+    } 
 }; 
 ?>

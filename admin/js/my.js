@@ -152,16 +152,7 @@ pages_init ={
                     "联系方式":""
                 }
             },
-            methods: { 
-                setReviewStatus:(id,status)=>{  
-                    url=`${getRootURL()}/API/admin/getUserList.php`;
-                    $.get(url,function(data){
-                        obj=JSON.parse(data);
-                        if (obj.error_code==0){ 
-                        }else
-                        alert(obj.data);
-                    })
-                },
+            methods: {  
                 random_secret:()=>{
                     secret="";
                     for (var i=0;i<4;i++){
@@ -192,6 +183,18 @@ pages_init ={
                             alert("修改成功");
                         }else
                         alert(obj.data);
+                    })
+                },
+                update_times: (user)=>{
+                    secret=user.secret;
+                    times=user.times;
+                    url=`${getRootURL()}/API/admin/updateTimes.php?secret=${secret}&times=${times}`;
+                    $.get(url,function(data){
+                        obj=JSON.parse(data);
+                        if (obj.error_code==0){  
+                            alert("修改成功");
+                        }else
+                            alert(obj.data);
                     })
                 }
             }   
