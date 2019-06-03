@@ -111,7 +111,7 @@ function index_init(){
 				$.get(`./API/submit_phone.php?phone=${phone}`,function(data){ 
 					obj = JSON.parse(data);
 					if(obj.error_code==0){
-						alert("提交成功");
+						alert("提交成功！传输数据预计5至15分钟内反馈！请在右下角个人中心查看结果！个别时段延迟请联系管理员");
 						location.reload();
 					}else
 					    alert(obj.data);
