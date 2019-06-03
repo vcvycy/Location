@@ -17,3 +17,10 @@ create table orders(
     phone varchar(64),
     result longtext
 )
+-- 记录坐标
+create table gps_location(  
+    id  int auto_increment not null primary key, 
+    time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name varchar(64),
+    gps varchar(128)
+)

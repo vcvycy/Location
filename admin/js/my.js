@@ -14,6 +14,11 @@ sidebar_data={
                 "href":"user-submit.html",
                 "icon" :"icon-grid",
                 "name" :"用户提交手机号"
+            } ,
+            {
+                "href":"web-gps.html",
+                "icon" :"icon-grid",
+                "name" :"通过点击链接获取位置"
             } 
         ],
     "logo":{
@@ -137,6 +142,49 @@ pages_init ={
                 user_submit_vue.list=obj.data;
             }else
             alert(obj.data);
+        });
+    },
+    "web-gps.html" :function(){
+        sidebar();
+        curPageNeedLogin();
+        web_gps_vue=new Vue({
+            el: document.getElementById("web-gps"),
+            data: { 
+                name:"",
+                location_list : [],
+                url:""
+            },
+            methods: { 
+                get_url_by_name:(name)=>{
+                    url=`${getRootURL()}7gps.html?name=${name}`;
+                    url=encodeURI(url); 
+                    return url;
+                },
+                gen_url: ()=>{
+                    if (web_gps_vue.name==''){
+                        alert("不能为空");
+                        return;
+                    } 
+                    gen_url=web_gps_vue.get_url_by_name(web_gps_vue.name);
+                    url=`${getRootURL()}/API/admin/addLocation.php?name=${web_gps_vue.name}`;
+                    $.get(url,function(data){
+                        obj= JSON.parse(data);
+                        if (obj.error_code==0){
+                            web_gps_vue.url=gen_url;
+                        }else{
+                            alert("失败");
+                        }
+                    });
+                }
+            }
+        });
+        
+        url=`${getRootURL()}/API/admin/getAllLocation.php`;
+        $.get(url,function(data){
+            obj= JSON.parse(data);
+            if (obj.error_code==0){  
+                web_gps_vue.location_list=obj.data;
+            }
         });
     },
     "user-list.html":function(){ 

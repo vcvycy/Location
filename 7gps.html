@@ -1,0 +1,68 @@
+<!DOCTYPE html>  
+<html>
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+</style>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=U1oxsr7eF4TKcUjWnADxNGS41ZehhgN1"> 
+</script>
+<script src="js/jquery-1.10.1.min.js"></script>
+</head>  
+ 
+<body>  
+<div id="allmap"></div> 
+<script type="text/javascript"> 
+function GetUrlParam(paraName) {
+　　　　var url = document.location.toString();
+　　　　var arrObj = url.split("?");
+
+　　　　if (arrObj.length > 1) {
+　　　　　　var arrPara = arrObj[1].split("&");
+　　　　　　var arr;
+
+　　　　　　for (var i = 0; i < arrPara.length; i++) {
+　　　　　　　　arr = arrPara[i].split("=");
+
+　　　　　　　　if (arr != null && arr[0] == paraName) {
+　　　　　　　　　　return arr[1];
+　　　　　　　　}
+　　　　　　}
+　　　　　　return "";
+　　　　}
+　　　　else {
+　　　　　　return "";
+　　　　}
+　　}
+ 
+var map = new BMap.Map("allmap");
+var point = new BMap.Point(116.331398,39.897445);
+map.centerAndZoom(point,12);
+
+var geolocation = new BMap.Geolocation();
+geolocation.getCurrentPosition(function(r){
+	if(this.getStatus() == BMAP_STATUS_SUCCESS){
+		var mk = new BMap.Marker(r.point);
+		map.addOverlay(mk);
+		map.panTo(r.point);
+		alert('您的位置：'+r.point.lng+','+r.point.lat);
+		name=decodeURI(GetUrlParam("name"));
+		str=JSON.stringify({
+			"经度" : r.point.lng,
+			"维度" : r.point.lat
+		});
+		url=`./API/updateGPS.php?name=${name}&gps=${str}`;
+		$.get(url,function(data){
+		});
+	}
+	else {
+		alert('failed'+this.getStatus());
+	}        
+});
+</script>  
+</body>  
+</html>
