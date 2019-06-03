@@ -9,6 +9,8 @@ function main(){
         \AdminSess\isLoginOrThrowException(); 
         $config_json = Utils::getParamWithFilter("user_config");
         $f=fopen("../user_config.json","w");
+        if ($f==0) 
+          Utils::exit(-1,"无法打开user_config.json文件");
         fwrite($f,$config_json);
         Utils::exit(0,"成功");
     } catch (Exception $e) {
