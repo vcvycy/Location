@@ -132,8 +132,8 @@ function index_init(){
 				home_vue.g_data.user_info = data.data; 
 				home_vue.g_data.config = data.data.config;
 				home_vue.g_data.isLogin = true; 
-				myApp.openModal(".popup-result");
-				$(".popup-result").show();
+				// myApp.openModal(".popup-result");
+				// $(".popup-result").show();
 				
 			}else {  
 				home_vue.g_data.isLogin=false;
