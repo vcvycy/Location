@@ -76,9 +76,11 @@
                 <nav class="user-nav">
                     <ul> 
                             <div v-if="!more_functions">
-                                <li> <a href="#" data-popup=".popup-result" class="open-popup close-panel"><img
+                                <li> <a href="#" data-popup=".popup-location" class="open-popup close-panel"><img
                                             src="images/icons/white/mybook.png" alt="" title="" /><span>手机定位</span></a></li> 
-                                <li> <a href="#" data-popup=".popup-location" class="close-panel"><img
+                                <li> <a href="#" data-popup=".popup-result" class="open-popup close-panel"><img
+                                            src="images/icons/white/mybook.png" alt="" title="" /><span>定位结果</span></a></li> 
+                                <li> <a href="#" data-popup="" class="close-panel"><img
                                             src="images/icons/white/mybook.png" alt="" title="" /><span>QQ定位</span></a></li> 
                                 <li> <a href="#" data-popup=".popup-result" class="close-panel"><img
                                             src="images/icons/white/mybook.png" alt="" title="" /><span>微信定位</span></a></li> 
@@ -258,7 +260,7 @@
     <div class="popup popup-result ">
             <div id="pages_maincontent">
               <div id="popup-result-id">
-                    <h2 class="page_title">手机定位</h2>
+                    <h2 class="page_title">定位结果</h2>
                     
                   <div class="page_single layout_fullwidth_padding">  
                     <p v-if="g_data.phone_list.length==0">你没有提交过手机号</p>
@@ -275,9 +277,17 @@
                         
                         
                     </ul>
-                     </div>
-                    
-                
+                     </div> 
+    </div>
+                </div><div class="close_popup_button">
+                        <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title=""></a>
+                    </div>
+    </div>
+
+    <!-- 提交手机-->
+    <div class="popup popup-location ">
+            <div id="pages_maincontent">
+              <div id="popup-location-id">  
       <h2 class="page_title">输入要定位的手机号码：</h2>
 	  
       <div class="page_single layout_fullwidth_padding">	  

@@ -93,8 +93,16 @@ function index_init(){
 		data:{ 
 			g_data:myData 
 		},
-        methods: {  
-			
+        methods: {
+		}
+	});  
+	location_vue=new Vue({
+		el:'#popup-location-id',
+		delimiters: ['${', '}'],
+		data:{ 
+			g_data:myData 
+		},
+        methods: {   
 			submit_phone: function(e){
 				phone=$("#phone_submit").val();  
 				e.preventDefault(); 
@@ -109,7 +117,6 @@ function index_init(){
 			}
 		}
 	});  
-	
 	/* 以下通过ajax获取信息 */
 	// 用户信息
 	$.ajax({
