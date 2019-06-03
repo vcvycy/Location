@@ -82,7 +82,8 @@ function index_init(){
 		},
 		methods:{
 			contact_admin :function(){
-				alert(`请联系管理员！${myData.config["联系方式"]}`);
+				a=myData.config["联系方式"].replace("<br>"," ");
+				alert(`请联系管理员！${a}`);
 			}
 		}
 	});  
