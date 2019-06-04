@@ -53,7 +53,8 @@ var image_window={
 
 /* 判断是否登陆，如果登陆，载入登陆信息、存取书信息 */
 function index_init(){ 
-
+	if (window.localStorage)
+	   $("#secret_input").val(window.localStorage["secret"]);
 	home_vue = new Vue({
 		el:'.user_login_info',
 		delimiters: ['${', '}'],
@@ -205,8 +206,7 @@ $$(document).on('pageInit', function (e) {
 })
 
 $("#LoginForm").validate({
-	submitHandler: function(form){
-		console.log("test");
+	submitHandler: function(form){ 
 		var formData = myApp.formToJSON('#LoginForm');
 		console.log(JSON.stringify(formData));
 		$.ajax({
@@ -218,7 +218,9 @@ $("#LoginForm").validate({
 			success: function (data) { 
 				if(data.error_code==0){
 					myApp.closeModal('.popup-login'); 
-					location.reload();
+					if (window.localStorage)
+						window.localStorage["secret"]=formData["secret"];
+					location.reload(); 
 				}else 
 				{
 					alert("卡密错误");
