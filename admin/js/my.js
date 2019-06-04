@@ -175,6 +175,18 @@ pages_init ={
                             alert("失败");
                         }
                     });
+                },
+                showMap: (gps)=>{
+                    gps = JSON.parse(gps);
+                    url=`map.html?lat=${gps.lat}&lng=${gps.lng}`;
+                    // alert(url);
+                    // window.open(url);    
+                    container = $("#mymap");
+                    container.attr("src",url);
+                    container.show();
+                    // var point = new BMap.Point(116.404, 39.915);
+                    // // 创建点坐标  
+                    // map.centerAndZoom(point, 15);
                 }
             }
         });

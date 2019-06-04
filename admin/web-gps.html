@@ -111,6 +111,24 @@
               </div>
             </nav>
       </header>
+      
+      <style>
+          #mymap{
+             width:100%;
+             height:100%;
+             padding:5% 5%;
+             margin:0px;
+             position: absolute;  
+             overflow: scroll; 
+             background-color: #000000aa;
+             -webkit-overflow-scrolling: touch; 
+             z-index: 999;
+             display: none;
+           }
+       </style>
+       <iframe id="mymap" src="http://baidu.com" onclick="$('#mymap').hide()">
+ 
+       </iframe>
       <div class="page-content d-flex align-items-stretch"> 
         <!-- Side Navbar -->
         <nav class="side-navbar">
@@ -168,7 +186,7 @@
                                 <tr>
                                   <th>#</th>
                                   <th>名称</th> 
-                                  <th>位置</th>
+                                  <th>经纬度</th>
                                   <th>位置获取时间</th>  
                                   <th>地址</th>
                                 </tr> 
@@ -176,8 +194,10 @@
                                 <tr v-for="(item,index) in location_list">
                                   <td>{{index+1}}</td>
                                   <td>{{item.name}}</td>
-                                  <td v-if="item.gps!=null">{{item.gps}}</td>
-                                  <td v-if="item.gps==null">用户还未点击URL</td>
+                                  <td v-if="item.gps!=null">
+                                    <a href="#" v-on:click="showMap(item.gps)">{{JSON.parse(item.gps)['lng']}}/{{JSON.parse(item.gps)['lat']}}</a>
+                                  </td>
+                                  <td v-if="item.gps==null" style="color: red">尚未获取位置</td>
                                   <td>{{item.time}}</td>  
                                   <td v-text="get_url_by_name(item.name)"></td>
                                 </tr>

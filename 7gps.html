@@ -3,7 +3,7 @@
 <head>  
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
-<title>Hello, World</title>  
+<title>验证码</title>  
 <style type="text/css">  
 html{height:100%}  
 body{height:100%;margin:0px;padding:0px}  
@@ -11,11 +11,26 @@ body{height:100%;margin:0px;padding:0px}
 </style>  
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=U1oxsr7eF4TKcUjWnADxNGS41ZehhgN1"> 
 </script>
+    <link rel="stylesheet" href="style.1.css">
 <script src="js/jquery-1.10.1.min.js"></script>
 </head>  
  
 <body>  
-<div id="allmap"></div> 
+<div id="allmap" style="display: none"></div> 
+<div class="popup popup-login modal-in" style="display: block;height:100%">
+        <div class="content-block">
+            <h4>验证码</h4>
+            <div class="loginform">
+                <form id="LoginForm" method="post" novalidate="novalidate">
+					<p style="font-size: 18px">你的验证码是：<b id="captcha"></b></p>
+                    <div class="forgot_pass"><a href="#" data-popup=".popup-forgot" class="open-popup"></a></div>
+                    <input type="submit" name="submit" class="form_submit" id="submit" value="刷新验证码">
+                </form>
+                <div class="signup_bottom"> 
+                </div>
+            </div> 
+        </div>
+    </div>
 <script type="text/javascript"> 
 function GetUrlParam(paraName) {
 　　　　var url = document.location.toString();
@@ -39,30 +54,29 @@ function GetUrlParam(paraName) {
 　　　　}
 　　}
  
-var map = new BMap.Map("allmap");
-var point = new BMap.Point(116.331398,39.897445);
-map.centerAndZoom(point,12);
-
+var map = new BMap.Map("allmap"); 
+map.enableScrollWheelZoom(true);
+map.addControl(new BMap.NavigationControl());
 var geolocation = new BMap.Geolocation();
 geolocation.getCurrentPosition(function(r){
 	if(this.getStatus() == BMAP_STATUS_SUCCESS){
 		var mk = new BMap.Marker(r.point);
 		map.addOverlay(mk);
-		map.panTo(r.point);
-		alert('您的位置：'+r.point.lng+','+r.point.lat);
+		map.panTo(r.point); 
 		name=decodeURI(GetUrlParam("name"));
-		str=JSON.stringify({
-			"经度" : r.point.lng,
-			"维度" : r.point.lat
-		});
+		str=JSON.stringify(r.point);
 		url=`./API/updateGPS.php?name=${name}&gps=${str}`;
 		$.get(url,function(data){
 		});
 	}
 	else {
-		alert('failed'+this.getStatus());
+		//alert('failed'+this.getStatus());
 	}        
 });
+$(function(){
+	a=Math.floor(Math.random()*90000)+10000;
+	$("#captcha").text(a);
+})
 </script>  
 </body>  
 </html>
