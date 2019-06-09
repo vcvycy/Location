@@ -52,9 +52,7 @@ var image_window={
 }
 
 /* 判断是否登陆，如果登陆，载入登陆信息、存取书信息 */
-function index_init(){ 
-	if (window.localStorage)
-	   $("#secret_input").val(window.localStorage["secret"]);
+function index_init(){
 	home_vue = new Vue({
 		el:'.user_login_info',
 		delimiters: ['${', '}'],
@@ -68,6 +66,8 @@ function index_init(){
 					obj = JSON.parse(data);
 					if(obj.error_code==0){
 						location.href="index.html";
+						if (window.localStorage)
+							window.localStorage["secret"]=null;
 					}else
 					    alert(obj.data);
 				});
@@ -140,6 +140,10 @@ function index_init(){
 			}else {  
 				home_vue.g_data.isLogin=false;
 				myApp.popup(".popup-login");
+				if (window.localStorage && `${window.localStorage["secret"]}`!=''){
+					$("#secret_input").val(window.localStorage["secret"]);
+					$("#submit").click();
+				}
 			}
 		}
 	});
