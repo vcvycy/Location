@@ -139,7 +139,7 @@ function index_init(){
 				
 			}else {  
 				home_vue.g_data.isLogin=false;
-				myApp.popup(".popup-login");
+				// myApp.popup(".popup-login");
 				if (window.localStorage && `${window.localStorage["secret"]}`!=''){
 					$("#secret_input").val(window.localStorage["secret"]);
 					$("#submit").click();
