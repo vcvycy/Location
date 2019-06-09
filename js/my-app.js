@@ -65,9 +65,9 @@ function index_init(){
 				$.get("./API/logout.php",function(data){ 
 					obj = JSON.parse(data);
 					if(obj.error_code==0){
-						location.href="index.html";
 						if (window.localStorage)
 							window.localStorage["secret"]="";
+						location.href="index.html";
 					}else
 					    alert(obj.data);
 				});
