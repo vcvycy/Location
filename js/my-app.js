@@ -67,7 +67,7 @@ function index_init(){
 					if(obj.error_code==0){
 						location.href="index.html";
 						if (window.localStorage)
-							window.localStorage["secret"]=null;
+							window.localStorage["secret"]="";
 					}else
 					    alert(obj.data);
 				});
