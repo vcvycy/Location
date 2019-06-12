@@ -13,7 +13,7 @@ sidebar_data={
             {
                 "href":"user-submit.html",
                 "icon" :"icon-grid",
-                "name" :"用户提交手机号"
+                "name" :"用户提交的请求"
             } ,
             {
                 "href":"web-gps.html",
