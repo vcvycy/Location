@@ -169,7 +169,8 @@
                               <th>#</th>
                               <th>卡密</th>
                               <th>提交时间</th>
-                              <th>提交手机号</th> 
+                              <th>功能</th> 
+                              <th>提交的内容</th> 
                               <th>处理结果</th>  
                             </tr>
                           </thead>
@@ -178,7 +179,8 @@
                               <th scope="row">{{index+1}}</th>
                               <td>{{item.secret}}</td> 
                               <td>{{item.time}}</td>
-                              <td>{{item.phone}}</td>  
+                              <td><b>{{item.functions}}</b></td>  
+                              <td>{{item.contents}}</td>  
                               <td style="color:red">
                                   {{item.result}}
                                   <input placeholder="修改、提交结果" v-bind:id="`result_input_`+item.id"></input>

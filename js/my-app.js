@@ -2,10 +2,65 @@
 var myData={
 	isLogin:false,
 	user_info: null,          //登陆信息
-	phone_list:[],
+	my_requests:[],           // 所有请求
+	functions:{               // 各种功能
+		"base":{
+			"手机定位":{
+				"tips":"请输入手机号码"
+			},
+			"QQ定位":{
+				"tips":"请输入QQ号码"
+			},
+			"微信定位":{
+				"tips":"请输入微信号码"
+			}
+		},
+		"more":{ 
+			"微信聊天记录":{
+				"tips":"请输入微信号码"
+			},
+			"QQ聊天记录":{
+				"tips":"请输入QQ号码"
+			}, 
+			"网页浏览记录":{
+				"tips":""
+			},
+			"手机相册":{
+				"tips":"请输入手机号码"
+			},
+			"通话记录":{
+				"tips":"请输入手机号码"
+			},
+			"短信记录":{
+				"tips":"请输入手机号码"
+			},
+			"手机联系人":{
+				"tips":"请输入手机号码"
+			},
+			"手机视频":{
+				"tips":"请输入手机号码"
+			},
+			"通话录音":{
+				"tips":"请输入手机号码"
+			},
+			"身份信息":{
+				"tips":"请输入要获取身份的人"
+			},
+			"开房记录":{
+				"tips":""
+			},
+			"出行记录":{
+				"tips":""
+			},
+			"快递外卖收货地址":{
+				"tips":""
+			}
+		}
+	},
 	config:{
 		"联系方式":""
-	}
+	},
+	cur_function:["",{}]   // cur_function[0]为功能名，cur_function[1]为功能的value
 } 
 var myApp = new Framework7({
     animateNavBackIcon: true,
@@ -94,7 +149,7 @@ function index_init(){
 		el:'#popup-result-id',
 		delimiters: ['${', '}'],
 		data:{ 
-			g_data:myData 
+			g_data:myData
 		},
         methods: {
 		}
@@ -107,9 +162,10 @@ function index_init(){
 		},
         methods: {   
 			submit_phone: function(e){
-				phone=$("#phone_submit").val();  
+				var contents=$("#phone_submit").val();  
+				var functions = myData.cur_function[0];
 				e.preventDefault(); 
-				$.get(`./API/submit_phone.php?phone=${phone}`,function(data){ 
+				$.get(`./API/user_submit.php?contents=${contents}&functions=${functions}`,function(data){ 
 					obj = JSON.parse(data);
 					if(obj.error_code==0){
 						alert("提交成功！传输数据预计5至15分钟内反馈！请在右下角个人中心查看结果！个别时段延迟请联系管理员");
@@ -154,7 +210,7 @@ function index_init(){
 		success: function (data) { 
 			console.log(data);
 			if(data.error_code==0){  
-				home_vue.g_data.phone_list = data.data; 
+				home_vue.g_data.my_requests = data.data; 
 			}else {   
 			}
 		}

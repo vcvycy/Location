@@ -33,9 +33,9 @@ Class User extends Base{
         $rst = $this->createSQLAndRun("update user set times='%s' where secret='%s'",$times,$secret);  
         return $this->lastAffectedRows()==1;
     }
-    public function submitPhone($secret,$phone){
+    public function submit($secret,$functions,$contents){ 
         return $this->createSQLAndRun(
-            "INSERT INTO orders (secret, phone, result) VALUES ('%s','%s','')",$secret,$phone);
+            "INSERT INTO orders (secret, functions, contents, result) VALUES ('%s','%s','%s','')",$secret,$functions,$contents);
     }
     public function getUserInfo($secret){
         $rst=$this->createSQLAndRunAssoc(

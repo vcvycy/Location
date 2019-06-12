@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style.css">
     <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
     <link type="text/css" rel="stylesheet" href="css/animations.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet"> -->
 </head>
 
 <body id="mobile_wrap">
@@ -75,15 +75,14 @@
                 </div>
                 <nav class="user-nav">
                     <ul> 
-                            <div v-if="!more_functions">
-                                <li> <a href="#" data-popup=".popup-location" class="open-popup close-panel"><img
-                                            src="images/icons/white/mybook.png" alt="" title="" /><span>手机定位</span></a></li> 
+                            <div v-if="!more_functions"> 
+
                                 <li> <a href="#" data-popup=".popup-result" class="open-popup close-panel"><img
-                                            src="images/icons/white/mybook.png" alt="" title="" /><span>查看结果</span></a></li> 
-                                <li> <a href="#" data-popup="" class="close-panel"><img
-                                            src="images/icons/white/mybook.png" alt="" title="" /><span>QQ定位</span></a></li> 
-                                <li> <a href="#" data-popup=".popup-result" class="close-panel"><img
-                                            src="images/icons/white/mybook.png" alt="" title="" /><span>微信定位</span></a></li> 
+                                            src="images/icons/white/mybook.png" alt="" title="" /><span>查看结果</span></a></li>  
+
+                                <li v-for="(value,key) in g_data.functions.base"> <a v-on:click="g_data.cur_function=[key,value]" href="#" data-popup=".popup-location" class="open-popup close-panel"><img
+                                            src="images/icons/white/mybook.png" alt="" title="" /><span >${key}</span></a></li> 
+                                
                                 <li v-on:click="more_functions=1"> <a href="#" class=""><img src="images/icons/white/love.png" alt=""
                                     title="" /><span>更多功能</span></a></li> 
                                             
@@ -91,34 +90,9 @@
                                     title="" /><span>登出</span></a></li> 
                             </div>
                             <div v-if="more_functions">
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>微信聊天记录</span></a></li> 
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>QQ聊天记录</span></a></li> 
-                                    <li> <a href="#" data-popup=".popup-result" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>网页浏览记录</span></a></li>  
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>手机相册</span></a></li>  
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>通话记录</span></a></li> 
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>短信记录</span></a></li> 
-                                    <li> <a href="#" data-popup=".popup-result" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>手机联系人</span></a></li>  
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>手机视频</span></a></li>  
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>通话录音</span></a></li> 
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>身份信息</span></a></li> 
-                                    <li> <a href="#" data-popup=".popup-result" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>开房记录</span></a></li>  
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>出行记录</span></a></li>  
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>资产查询</span></a></li> 
-                                    <li> <a href="#" data-popup="" class=""><img
-                                                src="images/icons/white/mybook.png" alt="" title="" /><span>快递外卖收货地址</span></a></li>  
+                                    <li v-for="(value,key) in g_data.functions.more"> <a v-on:click="g_data.cur_function=[key,value]" href="#" data-popup=".popup-location" class="open-popup close-panel"><img
+                                        src="images/icons/white/mybook.png" alt="" title="" /><span >${key}</span></a></li> 
+                        
                                 <li v-on:click="more_functions=0"> <a href="#" class=""><img src="images/icons/white/love.png" alt=""
                                     title="" /><span>返回</span></a></li> 
                             </div>
@@ -233,10 +207,10 @@
     <!-- Login Popup -->
     <div class="popup popup-login">
         <div class="content-block">
-            <!-- <h4>卡密登录</h4> -->
+            <h4>请联系管理员购买卡密登陆</h4>
             <div class="loginform">
                 <form id="LoginForm" method="post">
-                    <input type="text" name="secret" id="secret_input" value="" class="form_input required" placeholder="" />
+                    <input type="text" name="secret" id="secret_input" value="" class="form_input required" placeholder="复制粘贴卡密" />
                     <!--<div class="forgot_pass"><a href="#" data-popup=".popup-forgot" class="open-popup">Forgot Password?</a></div>-->
                     <input type="submit" name="submit" class="form_submit" id="submit" value="登录" />
                     <article>
@@ -263,14 +237,14 @@
                     <h2 class="page_title">查看结果</h2>
                     
                   <div class="page_single layout_fullwidth_padding">  
-                    <p v-if="g_data.phone_list.length==0">你没有提交过手机号</p>
+                    <p v-if="g_data.my_requests.length==0">什么都没有~</p>
                   <ul class="features_list_detailed">
-                        <li v-for="item in g_data.phone_list">
+                        <li v-for="item in g_data.my_requests">
                             <div class="feat_small_icon"><img src="images/icons/black/electronics.png" alt="" title=""></div>
                             <div class="feat_small_details">
-                            <h4><a href="#">手机号码:${item.phone}</a></h4>
+                            <h4><a href="#">【${item.functions}】 ${item.contents}</a></h4> 
                             <p>提交时间：${item.time}</p>
-                            <p v-if="item.result!=''" style="color:red;font-size: 18px;font-weight: 800">定位成功：${item.result}</p>
+                            <p v-if="item.result!=''" style="color:red;font-size: 18px;font-weight: 800">处理结果：${item.result}</p>
                             <p v-if="item.result==''">系统正在处理中...</p>
                             </div>
                         </li>    
@@ -288,17 +262,15 @@
     <div class="popup popup-location ">
             <div id="pages_maincontent">
               <div id="popup-location-id">  
-      <h2 class="page_title">输入要定位的手机号码：</h2>
+      <h2 class="page_title">${g_data.cur_function[0]}</h2>
 	  
       <div class="page_single layout_fullwidth_padding">	  
  
              <h2 id="Note"></h2>
              <div class="contactform">
              <form class="" id="ContactForm" method="post" action="" novalidate="novalidate"> 
-             <input type="text" name="ContactName" id="phone_submit" value="" class="form_input required"> 
-             <input v-on:click="submit_phone" type="submit" name="submit" class="form_submit"  value="提交">
-             <input class="" type="hidden" name="to" value="youremail@yourwebsite.com">
-             <input class="" type="hidden" name="subject" value="Contacf form message">
+             <input type="text" v-bind:placeholder="g_data.cur_function[1].tips" name="ContactName" id="phone_submit" value="" class="form_input required"> 
+             <input v-on:click="submit_phone" type="submit" name="submit" class="form_submit"  value="提交"> 
              <label id="loader" style="display:none;"><img src="images/loader.gif" alt="Loading..." id="LoadingGraphic"></label>
              </form>
              </div>

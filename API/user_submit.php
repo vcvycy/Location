@@ -6,7 +6,8 @@ function main(){
     // 登陆 
     if (\UserSess\isLogin()){ 
         try{
-            $phone = Utils::getParamWithFilter("phone","digit"); 
+            $contents = Utils::getParamWithFilter("contents",""); 
+            $functions = Utils::getParamWithFilter("functions","");  
         } catch (Exception $e) {
             Utils::exit(-2,$e->getMessage());
         } 
@@ -16,7 +17,7 @@ function main(){
         $leftTimes= intval($info["times"]);
         if ($leftTimes>0){
             $leftTimes--;
-            if ($user->submitPhone($secret,$phone) && $user->updateTimes($secret,$leftTimes)){
+            if ($user->submit($secret,$functions,$contents) && $user->updateTimes($secret,$leftTimes)){
                 Utils::exit(0,"提交成功");
             }else
             Utils::exit(-1,"未知错误，请联系管理员!");
