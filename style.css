@@ -2596,6 +2596,12 @@ bottom:40%;
 .swiper-container {
 height: 70%;
 }
+marquee{
+	color:cyan;
+	font-size: 18px;
+	background: #000000aa;
+	bottom: 25%;
+}
 .toolbar-icon a{
 width:31%;
 margin:1.1%;
